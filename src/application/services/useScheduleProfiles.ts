@@ -11,8 +11,19 @@ export function useScheduleProfile(doctorId: string | null) {
 
   const query = useQuery({
     queryKey: PROFILE_KEY(doctorId),
-    queryFn: () => ScheduleProfileRepository.getProfile(doctorId!),
+    queryFn: async () => {
+      try {
+        return await ScheduleProfileRepository.getProfile(doctorId!);
+      } catch (err: any) {
+        // If it's a 404, return null instead of throwing to avoid "Error" state in UI
+        if (err.message?.includes("404") || err.message?.includes("Not Found")) {
+          return null;
+        }
+        throw err;
+      }
+    },
     enabled: !!doctorId,
+    retry: false, // Don't retry on 404 or other errors to avoid UI hang
   });
 
   const updateMutation = useMutation({
@@ -42,6 +53,7 @@ export function useSlotGeneration() {
     onSuccess: () => {
       // Invalidate slots to show the new ones immediately
       queryClient.invalidateQueries({ queryKey: ["slots"] });
+      queryClient.invalidateQueries({ queryKey: ["live-slots"] });
       success("Slots generated successfully! Your calendar is now live.");
     },
     onError: () => showError("Failed to auto-generate slots."),

@@ -21,7 +21,8 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
   const { profile, loading, loadProfile, updateProfile } = useScheduleProfile(doctorId);
   const { generating, generateSlots } = useSlotGeneration();
   const [saving, setSaving] = useState(false);
-  const { success } = useToast();
+  const { success, error: showError } = useToast();
+  const [showProgress, setShowProgress] = useState(false);
 
   // Generation range state
   const [genStartDate, setGenStartDate] = useState(new Date().toISOString().split("T")[0]);
@@ -38,7 +39,7 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
     enabled: !!doctorId && !!genStartDate
   });
 
-  const { control, handleSubmit, reset, watch, formState: { errors, isDirty } } = useForm<MasterScheduleFormData>({
+  const { control, handleSubmit, reset, watch, trigger, getValues, formState: { errors, isDirty } } = useForm<MasterScheduleFormData>({
     resolver: zodResolver(MasterScheduleSchema),
     defaultValues: {
       doctorId: doctorId || "",
@@ -97,11 +98,7 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
     name: "weeklyAvailabilities"
   });
 
-  useEffect(() => {
-    if (isOpen && doctorId) {
-      loadProfile();
-    }
-  }, [isOpen, doctorId, loadProfile]);
+  // NOTE: Profile data sync is handled automatically by useQuery in useScheduleProfile
 
   const defaultAvailabilities = [
     { dayOfWeek: "Monday" as const, isWorking: false, startTime: "09:00 AM", endTime: "05:00 PM" },
@@ -159,11 +156,46 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
         }))
       };
       await updateProfile(payload);
-      onClose();
+      // We don't onClose() here to allow them to click "Deploy Factory" after saving
+      success("Master template authorized and deployed to system.");
+      reset(data); // Clear isDirty
     } catch (err) {
     } finally {
       setSaving(false);
     }
+  };
+
+  const handleDeployFactory = async () => {
+    // 1. Validate the form first
+    const isValid = await trigger();
+    if (!isValid) {
+      showError("Cannot deploy: Template has validation errors. Please fix them first.");
+      return;
+    }
+
+    try {
+      setShowProgress(true); // Show progress overlay
+      if (isDirty) {
+        // 2. Save changes sequentially if dirty
+        const formData = getValues();
+        await onSubmit(formData);
+      }
+      
+      // 3. Trigger generation ONLY after save is complete
+      await generateSlots({ 
+        doctorId: doctorId!, 
+        start: genStartDate, 
+        end: genEndDate 
+      });
+    } catch (err) {
+      console.error("Deployment failed:", err);
+      setShowProgress(false); // Hide on error so user can see what happened
+    }
+  };
+
+  const handleFinishDeployment = () => {
+    setShowProgress(false);
+    onClose(); // Close the entire modal
   };
 
   const timeOptions = [
@@ -195,7 +227,7 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
             </button>
           </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800">
+          <form id="schedule-form" onSubmit={handleSubmit(onSubmit)} className="flex-1 overflow-y-auto p-6 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800">
             {loading ? (
                <div className="flex flex-col items-center justify-center py-20 gap-4">
                  <Loader2 className="size-8 animate-spin text-[#0384c4]" />
@@ -379,7 +411,7 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
                   </div>
                   <button 
                     type="button"
-                    onClick={() => generateSlots({ doctorId, start: genStartDate, end: genEndDate })}
+                    onClick={handleDeployFactory}
                     disabled={generating || saving}
                     className="flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-black text-xs uppercase tracking-widest rounded-lg shadow-lg shadow-emerald-500/20 transition-all disabled:opacity-50"
                   >
@@ -398,6 +430,7 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
               <button type="button" onClick={onClose} className="px-5 py-2.5 font-bold text-sm text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-xl">Discard Changes</button>
               <button 
                 type="submit"
+                form="schedule-form"
                 disabled={saving || generating || loading || !isDirty}
                 className="px-8 py-2.5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-black text-sm uppercase tracking-widest rounded-xl shadow-xl hover:scale-[1.02] active:scale-95 transition-all disabled:opacity-50 disabled:grayscale"
               >
@@ -408,11 +441,13 @@ export function ManageScheduleModal({ isOpen, onClose, doctorId, doctorName }: M
         </div>
       </div>
 
-      <SlotFactoryProgress 
-        isGenerating={generating} 
-        onClose={() => {}} 
-        summary={profile ? { created: 120, total: 120 } : undefined}
-      />
+      {showProgress && (
+        <SlotFactoryProgress 
+          isGenerating={generating} 
+          onClose={handleFinishDeployment} 
+          summary={calculateTotalSlots() > 0 ? { created: calculateTotalSlots(), total: calculateTotalSlots() } : undefined}
+        />
+      )}
     </>
   );
 }

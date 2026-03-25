@@ -46,7 +46,11 @@ export function BookAppointmentModal({ isOpen, onClose, onSubmit }: BookAppointm
       setSlotId("");
       try {
         const data = await AppointmentRepository.getAvailableSlots(doctorId, date);
-        if (!cancelled) setSlots(data);
+        if (!cancelled) {
+          // Safety: Filter to ensure we only show slots for the selected local date
+          const dateOnlySlots = data.filter(s => s.startTime.startsWith(date));
+          setSlots(dateOnlySlots);
+        }
       } catch (err: any) {
         if (!cancelled) {
           setSlotsError(err.message || "Failed to load slots");
@@ -83,7 +87,11 @@ export function BookAppointmentModal({ isOpen, onClose, onSubmit }: BookAppointm
 
     setSubmitting(true);
     try {
-      await onSubmit({ patientId, appointmentSlotId: slotId });
+      await onSubmit({ 
+        patientId, 
+        doctorId, 
+        appointmentSlotId: slotId 
+      });
       onClose();
     } catch {
       // Modal stays open on error for retry
@@ -195,40 +203,66 @@ export function BookAppointmentModal({ isOpen, onClose, onSubmit }: BookAppointm
             />
           </div>
 
-          {/* Available Slots */}
-          <div>
-            <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1.5 flex items-center gap-1.5 block">
-              <Clock className="size-3.5" /> Available Slot <span className="text-red-400">*</span>
-            </label>
-            {!doctorId || !date ? (
-              <p className="text-sm text-slate-400 italic h-11 flex items-center">Select a doctor and date first</p>
-            ) : slotsLoading ? (
-              <div className="flex items-center gap-2 h-11 px-3 text-sm text-slate-400">
-                <Loader2 className="size-4 animate-spin" /> Fetching available slots…
+            {/* Available Slots with Scrolling & Grouping */}
+            <div className="flex-1 min-h-0 flex flex-col gap-3">
+              <label className="text-xs font-black text-slate-700 dark:text-slate-300 uppercase tracking-[0.15em] mb-1 flex items-center gap-2">
+                <Clock className="size-3.5 text-[#0384c4]" /> Available Slots <span className="text-red-400">*</span>
+              </label>
+
+              <div className="flex-1 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-slate-200 dark:scrollbar-thumb-slate-800 space-y-4 max-h-[300px]">
+                {!doctorId || !date ? (
+                  <div className="flex flex-col items-center justify-center py-10 text-center opacity-50">
+                    <CalendarClock className="size-8 mb-2 text-slate-300" />
+                    <p className="text-xs font-bold uppercase tracking-widest text-slate-400">Select a doctor & date</p>
+                  </div>
+                ) : slotsLoading ? (
+                  <div className="flex items-center justify-center py-10 gap-3 text-slate-400">
+                    <Loader2 className="size-4 animate-spin" />
+                    <span className="text-xs font-bold uppercase tracking-widest">Fetching Slots...</span>
+                  </div>
+                ) : slotsError ? (
+                  <div className="p-4 bg-red-50 dark:bg-red-900/10 border border-red-100 dark:border-red-900/20 rounded-xl text-center">
+                    <p className="text-xs font-bold text-red-600 dark:text-red-400 uppercase">{slotsError}</p>
+                  </div>
+                ) : slots.length === 0 ? (
+                  <div className="p-8 bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/20 rounded-xl text-center">
+                    <p className="text-xs font-bold text-amber-600 dark:text-amber-400 uppercase tracking-widest">No availability for this date</p>
+                  </div>
+                ) : (
+                  <>
+                    {[
+                      { label: "Morning", filter: (s: any) => new Date(s.startTime).getHours() < 12 },
+                      { label: "Afternoon", filter: (s: any) => new Date(s.startTime).getHours() >= 12 && new Date(s.startTime).getHours() < 17 },
+                      { label: "Evening", filter: (s: any) => new Date(s.startTime).getHours() >= 17 }
+                    ].map(group => {
+                      const groupSlots = slots.filter(group.filter);
+                      if (groupSlots.length === 0) return null;
+                      return (
+                        <div key={group.label} className="space-y-2">
+                          <h4 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] pl-1">{group.label}</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {groupSlots.map(slot => (
+                              <button
+                                key={slot.id}
+                                type="button"
+                                onClick={() => setSlotId(slot.id)}
+                                className={`px-4 py-2.5 rounded-xl text-xs font-black transition-all border-2 ${
+                                  slotId === slot.id
+                                    ? "bg-[#0384c4] text-white border-[#0384c4] shadow-lg shadow-blue-500/20 scale-[1.02]"
+                                    : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border-slate-100 dark:border-slate-800 hover:border-[#0384c4]/30 hover:bg-blue-50/50 dark:hover:bg-blue-900/20"
+                                }`}
+                              >
+                                {formatSlotLabel(slot).split(" — ")[0]}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                )}
               </div>
-            ) : slotsError ? (
-              <p className="text-sm text-red-500 h-11 flex items-center">{slotsError}</p>
-            ) : slots.length === 0 ? (
-              <p className="text-sm text-amber-600 italic h-11 flex items-center">No available slots for this date.</p>
-            ) : (
-              <div className="flex flex-wrap gap-2 pt-1">
-                {slots.map(slot => (
-                  <button
-                    key={slot.id}
-                    type="button"
-                    onClick={() => setSlotId(slot.id)}
-                    className={`px-3 py-2 rounded-lg text-xs font-bold border transition-all ${
-                      slotId === slot.id
-                        ? "bg-[#0384c4] text-white border-[#0384c4] shadow-md shadow-[#0384c4]/20"
-                        : "bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-700 hover:border-[#0384c4] hover:text-[#0384c4]"
-                    }`}
-                  >
-                    {formatSlotLabel(slot)}
-                  </button>
-                ))}
-              </div>
-            )}
-          </div>
+            </div>
 
           {/* Actions */}
           <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex justify-end gap-3 mt-1">

@@ -23,5 +23,6 @@ export interface Appointment {
 
 export interface AppointmentPayload {
   patientId: string;
+  doctorId: string;
   appointmentSlotId: string;
 }

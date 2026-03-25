@@ -2,17 +2,36 @@ import { Appointment, AppointmentSlot, AppointmentPayload } from "@/domain/entit
 import { apiClient } from "./ApiClient";
 
 function mapAppointment(raw: any): Appointment {
+  // Derive date and time from raw.appointmentDate (ISO string from backend)
+  let dateStr = "";
+  let timeStr = "";
+  if (raw.appointmentDate || raw.AppointmentDate) {
+    const d = new Date(raw.appointmentDate || raw.AppointmentDate);
+    if (!isNaN(d.getTime())) {
+      const y = d.getFullYear();
+      const m = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      dateStr = `${y}-${m}-${day}`;
+      
+      let h = d.getHours();
+      const mins = String(d.getMinutes()).padStart(2, "0");
+      const ampm = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      timeStr = `${String(h).padStart(2, "0")}:${mins} ${ampm}`;
+    }
+  }
+
   return {
     id: raw.id || raw.Id || "",
     patientId: raw.patientId || raw.PatientId || "",
-    patientName: raw.patientName || raw.PatientName || "Unknown Patient",
+    patientName: raw.patientFullName || raw.PatientFullName || raw.patientName || raw.PatientName || "Unknown Patient",
     patientInitials: raw.patientInitials || raw.PatientInitials || "UP",
     doctorId: raw.doctorId || raw.DoctorId || "",
-    doctorName: raw.doctorName || raw.DoctorName || "Unknown Doctor",
+    doctorName: raw.doctorFullName || raw.DoctorFullName || raw.doctorName || raw.DoctorName || "Unknown Doctor",
     specialty: raw.specialty || raw.Specialty || "General",
     appointmentSlotId: raw.appointmentSlotId || raw.AppointmentSlotId || "",
-    date: raw.date || raw.Date || "",
-    time: raw.time || raw.Time || "",
+    date: dateStr || raw.date || raw.Date || "",
+    time: timeStr || raw.time || raw.Time || "",
     durationMinutes: raw.durationMinutes || raw.DurationMinutes || 15,
     status: raw.status || raw.Status || "Confirmed"
   };
