@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Med-Link | Staff &amp; Schedule Manager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#0384c4",
+                "background-light": "#f5f7f8",
+                "background-dark": "#0f1c23",
+              },
+              fontFamily: {
+                "display": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="w-64 border-r border-primary/10 bg-white dark:bg-slate-900 flex flex-col">
+<div class="p-6 flex items-center gap-3 border-b border-primary/10">
+<div class="size-10 bg-primary rounded-lg flex items-center justify-center text-white">
+<span class="material-symbols-outlined">medical_services</span>
+</div>
+<div>
+<h1 class="text-lg font-bold leading-none">Med-Link</h1>
+<p class="text-xs text-slate-500 dark:text-slate-400">Staff &amp; Schedule</p>
+</div>
+</div>
+<nav class="flex-1 p-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 bg-primary/10 text-primary rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined italic">group</span>
+<span class="text-sm font-medium">Staff</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+<span class="text-sm font-medium">Schedules</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">domain</span>
+<span class="text-sm font-medium">Departments</span>
+</a>
+<div class="pt-4 pb-2 px-4 text-[10px] font-bold uppercase tracking-wider text-slate-400">System</div>
+<a class="flex items-center gap-3 px-4 py-2 text-slate-600 dark:text-slate-400 hover:bg-primary/5 rounded-lg transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-primary/10">
+<div class="flex items-center gap-3 px-2">
+<div class="size-8 rounded-full bg-primary/20 flex items-center justify-center text-primary font-bold text-xs">AD</div>
+<div class="flex-1 min-w-0">
+<p class="text-sm font-medium truncate">Admin User</p>
+<p class="text-[10px] text-slate-500">Super Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto relative">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md px-8 py-6 flex items-center justify-between">
+<div>
+<h2 class="text-2xl font-bold tracking-tight">Staff Management</h2>
+<p class="text-slate-500 text-sm">Overview of your medical personnel and availability</p>
+</div>
+<button class="bg-primary text-white px-4 py-2 rounded-lg flex items-center gap-2 hover:bg-primary/90 transition-all font-medium text-sm">
+<span class="material-symbols-outlined text-sm">person_add</span>
+                    Add Staff Member
+                </button>
+</header>
+<div class="px-8 pb-12">
+<!-- Staff Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<!-- Dr Sarah Jenkins -->
+<div class="bg-white dark:bg-slate-900 border border-primary/10 rounded-xl p-5 hover:shadow-lg transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="size-16 rounded-lg bg-cover bg-center border-2 border-primary/10" data-alt="Portrait of a female doctor in scrubs" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAZPlbukZOn_TcyQojm6EJD_Mp7XTOEMC_46c3HPp92bDEQBbUZRhAmCdRNzy4ibNjKUYM6fcMxcw2FLuLSmNLD16-0BKpKkbHT0x9xLZJFyatpniJZzFDWqDMXHI5rMcGoG3EoBp2x3NRBJ4DxiOZExsIcvPhALZc8swMr7qeEVpgQev-9x51HdiKcoNBg8H2ZOEk3UTIcId-EezaSVcGraQiF9Vh8Kc6q0HqCdXYBiFq-24kkPcE7KU69FKkQZQuWya5Fb3jkKrkl')"></div>
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Active</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Dr. Sarah Jenkins</h3>
+<p class="text-primary text-sm font-medium mb-4">Chief of Cardiology</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mb-6">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            Shift: 08:00 - 17:00
+                        </div>
+<button class="w-full py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2 border border-primary/20">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                            Manage Time-Off
+                        </button>
+</div>
+<!-- Dr Michael Chen -->
+<div class="bg-white dark:bg-slate-900 border border-primary/10 rounded-xl p-5 hover:shadow-lg transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="size-16 rounded-lg bg-cover bg-center border-2 border-primary/10" data-alt="Portrait of a male doctor in lab coat" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuA767meUqOQnqgE_O8WQQmQGk8Nl3mrvzEnJqbnuMEQk-vQSxbJo58tQZHuzImOWB6FRPKn9lM9tOcOde-15CNx2U-0K_1SQEEaEOfoKfGzBHoOyhY6pzc5etErSCUwz_Z6Ydm0qzpNDEIv2Xe5yyEH6lLS2eYNvIsLxzHJrAlQp10m8xcGZQFOH3wDiYQ6YNFoeKdTAS4GzvvhMrkBDgLcMIaoP7mZxnT3Aubyca2mRfPMw3grXbpQWq5p2fSf-jgo_MDC4_QsYOdT')"></div>
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400">On Break</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Dr. Michael Chen</h3>
+<p class="text-primary text-sm font-medium mb-4">Pediatrics</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mb-6">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            Shift: 09:00 - 18:00
+                        </div>
+<button class="w-full py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2 border border-primary/20">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                            Manage Time-Off
+                        </button>
+</div>
+<!-- Dr Elena Rodriguez -->
+<div class="bg-white dark:bg-slate-900 border border-primary/10 rounded-xl p-5 hover:shadow-lg transition-shadow border-primary/30 ring-2 ring-primary/20">
+<div class="flex items-start justify-between mb-4">
+<div class="size-16 rounded-lg bg-cover bg-center border-2 border-primary/10" data-alt="Portrait of a female neurologist" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAnWNIN6S5yh9yxhctpH4w3IZbmKnHgiy7W88_6tHzeKzizPhWgvr2mVTDI83CFljeMP4xsEnP-92e7BrutGS_9Q35U8oVz9f3f2N7Gon5t7m_T3R_RuoAPsbapn6BzG4UWDSHp1j2gLDNo9HMx4wl16zIvaOFxfkbyzELOi19tu1nxa1h2lZgv3zSfnuamuz9kZgggp4geHCxcUKRhW7dORIYwpGAqfMh3KVdUyRkXeRePMnCIlJnHp_pWVetcMX3tK5ITev3MRaxn')"></div>
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400">Active</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Dr. Elena Rodriguez</h3>
+<p class="text-primary text-sm font-medium mb-4">Neurology Specialist</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mb-6">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            Shift: 07:00 - 16:00
+                        </div>
+<button class="w-full py-2 bg-primary text-white rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                            Manage Time-Off
+                        </button>
+</div>
+<!-- Dr James Wilson -->
+<div class="bg-white dark:bg-slate-900 border border-primary/10 rounded-xl p-5 hover:shadow-lg transition-shadow">
+<div class="flex items-start justify-between mb-4">
+<div class="size-16 rounded-lg bg-cover bg-center border-2 border-primary/10" data-alt="Portrait of an older male surgeon" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDuCzQ3-TOzYE7pXwvPFmUB8f_gMM3SJVth9kFdBkFOajyiyItTNxNzqQzr5GaPcQDTHnT2epoBUOMenMQYprDdbxdVoByrtYqbfBI8WBKlvdScaYedfrh9PhxbvJYY8pdGP3PSxyCXpM09HIyIuOYlI16TCIdFH5P9S_gqRA9E5D82I8T1Sj780fliscgpBgCCEUdeq3E0lFhqNF81m8FnYsEyHpZx79BTjflnbLwxEn6bBJ4L5OjPliq-81k8d-1IaUhY7ooizxth')"></div>
+<span class="px-2 py-1 rounded-full text-[10px] font-bold uppercase bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400">Remote</span>
+</div>
+<h3 class="font-bold text-lg mb-1">Dr. James Wilson</h3>
+<p class="text-primary text-sm font-medium mb-4">Senior Surgeon</p>
+<div class="flex items-center gap-2 text-xs text-slate-500 mb-6">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            Shift: 10:00 - 19:00
+                        </div>
+<button class="w-full py-2 bg-primary/5 hover:bg-primary text-primary hover:text-white rounded-lg transition-all text-sm font-semibold flex items-center justify-center gap-2 border border-primary/20">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                            Manage Time-Off
+                        </button>
+</div>
+</div>
+</div>
+<!-- Shadcn-like Dialog/Modal -->
+<div class="fixed inset-0 z-50 flex items-center justify-center p-4">
+<!-- Overlay -->
+<div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm"></div>
+<!-- Content -->
+<div class="relative w-full max-w-2xl bg-white dark:bg-slate-900 rounded-xl shadow-2xl border border-primary/10 overflow-hidden flex flex-col md:flex-row">
+<!-- Date Picker Sidebar (Mockup) -->
+<div class="w-full md:w-[320px] p-6 border-r border-primary/10 bg-primary/5">
+<div class="flex items-center justify-between mb-6">
+<h4 class="font-bold">Select Dates</h4>
+<div class="flex gap-1">
+<button class="size-8 flex items-center justify-center hover:bg-white rounded transition-colors text-slate-600">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="size-8 flex items-center justify-center hover:bg-white rounded transition-colors text-slate-600">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<p class="text-center text-sm font-semibold mb-4">October 2023</p>
+<div class="grid grid-cols-7 text-center gap-1 mb-6">
+<div class="text-[10px] font-bold text-slate-400">Su</div>
+<div class="text-[10px] font-bold text-slate-400">Mo</div>
+<div class="text-[10px] font-bold text-slate-400">Tu</div>
+<div class="text-[10px] font-bold text-slate-400">We</div>
+<div class="text-[10px] font-bold text-slate-400">Th</div>
+<div class="text-[10px] font-bold text-slate-400">Fr</div>
+<div class="text-[10px] font-bold text-slate-400">Sa</div>
+<!-- Empty days -->
+<div></div><div></div><div></div><div></div><div></div>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">1</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">2</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">3</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">4</button>
+<!-- Selection range -->
+<button class="size-8 text-xs rounded-full bg-primary text-white flex items-center justify-center">5</button>
+<button class="size-8 text-xs bg-primary/20 flex items-center justify-center">6</button>
+<button class="size-8 text-xs bg-primary/20 flex items-center justify-center">7</button>
+<button class="size-8 text-xs bg-primary/20 flex items-center justify-center">8</button>
+<button class="size-8 text-xs bg-primary/20 flex items-center justify-center">9</button>
+<button class="size-8 text-xs bg-primary/20 flex items-center justify-center">10</button>
+<button class="size-8 text-xs rounded-full bg-primary text-white flex items-center justify-center">11</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">12</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">13</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">14</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">15</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">16</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">17</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">18</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">19</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">20</button>
+<button class="size-8 text-xs rounded-full hover:bg-primary/20 flex items-center justify-center">21</button>
+</div>
+<div class="space-y-3">
+<label class="block text-xs font-bold text-slate-500 uppercase">Leave Type</label>
+<select class="w-full bg-white dark:bg-slate-800 border-primary/20 rounded-lg text-sm">
+<option>Annual Leave</option>
+<option>Sick Leave</option>
+<option>Personal</option>
+<option>Conference</option>
+</select>
+</div>
+</div>
+<!-- Right Panel: Requests List -->
+<div class="flex-1 flex flex-col min-h-0">
+<div class="p-6 border-b border-primary/10 flex items-center justify-between">
+<div>
+<h3 class="text-lg font-bold">Manage Time-Off</h3>
+<p class="text-xs text-slate-500">Dr. Elena Rodriguez • Neurology</p>
+</div>
+<button class="text-slate-400 hover:text-slate-600">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto p-6 space-y-4">
+<h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider">Upcoming &amp; Existing</h4>
+<!-- Existing Exception 1 -->
+<div class="p-4 rounded-lg border border-primary/10 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-amber-100 text-amber-600 flex items-center justify-center">
+<span class="material-symbols-outlined">medical_information</span>
+</div>
+<div>
+<p class="text-sm font-semibold leading-none mb-1">Medical Conference</p>
+<p class="text-xs text-slate-500">Oct 15 - Oct 17, 2023</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 text-amber-700">PENDING</span>
+</div>
+<!-- Existing Exception 2 -->
+<div class="p-4 rounded-lg border border-primary/10 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-primary/10 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined">beach_access</span>
+</div>
+<div>
+<p class="text-sm font-semibold leading-none mb-1">Vacation (Approved)</p>
+<p class="text-xs text-slate-500">Sept 10 - Sept 14, 2023</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-green-100 text-green-700">APPROVED</span>
+</div>
+<!-- Existing Exception 3 -->
+<div class="p-4 rounded-lg border border-primary/10 bg-slate-50 dark:bg-slate-800/50 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded bg-red-100 text-red-600 flex items-center justify-center">
+<span class="material-symbols-outlined">personal_injury</span>
+</div>
+<div>
+<p class="text-sm font-semibold leading-none mb-1">Personal Leave</p>
+<p class="text-xs text-slate-500">Oct 05 - Oct 11, 2023</p>
+</div>
+</div>
+<button class="text-slate-400 hover:text-red-500">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</div>
+<div class="p-6 bg-slate-50 dark:bg-slate-800/50 border-t border-primary/10 flex items-center justify-end gap-3">
+<button class="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg transition-colors">Cancel</button>
+<button class="px-4 py-2 text-sm font-bold bg-primary text-white rounded-lg shadow-md hover:shadow-lg transition-all">Submit Request</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

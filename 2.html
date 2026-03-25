@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Med-Link Admin Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0384c4",
+                        "background-light": "#f5f7f8",
+                        "background-dark": "#0f1c23",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-nav {
+            background-color: rgba(3, 132, 196, 0.1);
+            color: #0384c4;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-display">
+<div class="flex h-screen overflow-hidden">
+<aside class="w-64 flex-shrink-0 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col">
+<div class="p-6 flex items-center gap-3">
+<div class="bg-primary rounded-lg p-1.5 flex items-center justify-center text-white">
+<span class="material-symbols-outlined">health_and_safety</span>
+</div>
+<div>
+<h1 class="text-slate-900 dark:text-white text-lg font-bold leading-none">Med-Link</h1>
+<p class="text-slate-500 dark:text-slate-400 text-xs font-medium">Admin Dashboard</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="active-nav flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-semibold" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">groups</span>
+                Patients
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">badge</span>
+                Staff
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">calendar_today</span>
+                Appointments
+            </a>
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">payments</span>
+                Payments
+            </a>
+</nav>
+<div class="p-4 border-t border-slate-200 dark:border-slate-800">
+<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-slate-600 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 text-sm font-medium transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                Clinic Settings
+            </a>
+</div>
+</aside>
+<div class="flex-1 flex flex-col overflow-hidden">
+<header class="h-16 flex items-center justify-between px-8 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-400">location_on</span>
+<h2 class="text-slate-800 dark:text-slate-100 font-semibold">City Central Clinic</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative max-w-md hidden md:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-xl leading-none">search</span>
+<input class="pl-10 pr-4 py-1.5 w-64 bg-slate-100 dark:bg-slate-800 border-none rounded-lg text-sm focus:ring-2 focus:ring-primary/50 placeholder:text-slate-400" placeholder="Search patients, records..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white dark:border-slate-900"></span>
+</button>
+<div class="h-8 w-[1px] bg-slate-200 dark:bg-slate-700 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold text-slate-900 dark:text-white leading-none">Dr. Sarah Miller</p>
+<p class="text-xs text-slate-500 mt-1">Chief Admin</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden ring-2 ring-slate-100 dark:ring-slate-800">
+<img alt="User Profile" data-alt="Female doctor in white lab coat smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Jtkshao7i9BiA7xke-4xhvZlKMek12QC-Fmpe81Q0xn3eZHsb28L0tGC6LA7cg75P6LnzjTeP6TuV3xpZZfk9iS7C43-3WVz7P8F9uEBjh55zaB2lpdLJvRfhKhOb8WTos5O64tMYbFRz2J4c8iXsI6VkXp5XLamfzabhm3gR9ky9BO7mksuVJS8a9Gp3N0OMs8CNIaz54SW9lLAs8U3spTsDbnVSTM9-zVWBTNBPzPJFBAwnRhY5l90mRYY1Zkvprm7I5VF62pf"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto p-8 bg-background-light dark:bg-background-dark">
+<div class="max-w-7xl mx-auto space-y-8">
+<div class="flex flex-col gap-1">
+<h3 class="text-2xl font-bold tracking-tight text-slate-900 dark:text-white">Dashboard Overview</h3>
+<p class="text-slate-500 dark:text-slate-400">Welcome back, here is what's happening today at City Central Clinic.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">event_available</span>
+</div>
+<span class="text-emerald-500 text-xs font-bold px-2 py-1 bg-emerald-50 dark:bg-emerald-500/10 rounded-full">+12%</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Today's Appointments</p>
+<h4 class="text-3xl font-bold mt-1 text-slate-900 dark:text-white">24</h4>
+<div class="mt-4 w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">bed</span>
+</div>
+<span class="text-emerald-500 text-xs font-bold px-2 py-1 bg-emerald-50 dark:bg-emerald-500/10 rounded-full">+5%</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Occupancy Rate</p>
+<h4 class="text-3xl font-bold mt-1 text-slate-900 dark:text-white">88%</h4>
+<div class="mt-4 w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-[88%]"></div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">monetization_on</span>
+</div>
+<span class="text-emerald-500 text-xs font-bold px-2 py-1 bg-emerald-50 dark:bg-emerald-500/10 rounded-full">+8.2%</span>
+</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm font-medium">Total Revenue</p>
+<h4 class="text-3xl font-bold mt-1 text-slate-900 dark:text-white">$12,450</h4>
+<div class="mt-4 w-full bg-slate-100 dark:bg-slate-800 h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full w-2/3"></div>
+</div>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800 flex items-center justify-between">
+<div>
+<h5 class="text-lg font-bold text-slate-900 dark:text-white">Revenue Growth</h5>
+<p class="text-sm text-slate-500">Monthly trend analysis for clinic services</p>
+</div>
+<div class="flex gap-2">
+<button class="px-3 py-1.5 text-xs font-semibold bg-primary text-white rounded-lg">Last 30 Days</button>
+<button class="px-3 py-1.5 text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 rounded-lg hover:bg-slate-200 transition-colors">Last 6 Months</button>
+</div>
+</div>
+<div class="p-8 h-96 relative">
+<div class="absolute inset-x-8 bottom-8 top-16 flex items-end justify-between">
+<div class="w-full h-full relative">
+<svg class="w-full h-full" preserveaspectratio="none" viewbox="0 0 1000 300">
+<defs>
+<lineargradient id="chartGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0384c4" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#0384c4" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,280 Q50,260 100,220 T200,180 T300,240 T400,140 T500,100 T600,160 T700,80 T800,40 T900,100 T1000,60 V300 H0 Z" fill="url(#chartGradient)"></path>
+<path d="M0,280 Q50,260 100,220 T200,180 T300,240 T400,140 T500,100 T600,160 T700,80 T800,40 T900,100 T1000,60" fill="none" stroke="#0384c4" stroke-linecap="round" stroke-width="4"></path>
+<circle cx="800" cy="40" fill="#0384c4" r="6"></circle>
+</svg>
+<div class="absolute left-[80%] top-[40px] -translate-x-1/2 -translate-y-full mb-2">
+<div class="bg-slate-900 text-white text-[10px] px-2 py-1 rounded shadow-lg whitespace-nowrap">
+                                        May 24: $14,200
+                                    </div>
+</div>
+</div>
+</div>
+<div class="absolute left-8 right-8 top-16 bottom-8 flex flex-col justify-between pointer-events-none">
+<div class="border-t border-slate-100 dark:border-slate-800 w-full flex justify-between">
+<span class="text-[10px] text-slate-400 mt-1">$20k</span>
+</div>
+<div class="border-t border-slate-100 dark:border-slate-800 w-full flex justify-between">
+<span class="text-[10px] text-slate-400 mt-1">$15k</span>
+</div>
+<div class="border-t border-slate-100 dark:border-slate-800 w-full flex justify-between">
+<span class="text-[10px] text-slate-400 mt-1">$10k</span>
+</div>
+<div class="border-t border-slate-100 dark:border-slate-800 w-full flex justify-between">
+<span class="text-[10px] text-slate-400 mt-1">$5k</span>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-700 w-full flex justify-between">
+<span class="text-[10px] text-slate-400 mt-1">$0</span>
+</div>
+</div>
+<div class="absolute left-12 right-8 bottom-2 flex justify-between px-2">
+<span class="text-[10px] text-slate-400">May 01</span>
+<span class="text-[10px] text-slate-400">May 07</span>
+<span class="text-[10px] text-slate-400">May 14</span>
+<span class="text-[10px] text-slate-400">May 21</span>
+<span class="text-[10px] text-slate-400">May 28</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-8">
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h5 class="font-bold text-slate-900 dark:text-white">Upcoming Appointments</h5>
+</div>
+<div class="p-0">
+<div class="flex items-center gap-4 p-4 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary font-bold">JD</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white">John Doe</p>
+<p class="text-xs text-slate-500">General Checkup</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">09:00 AM</p>
+<span class="text-[10px] px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full font-bold">Confirmed</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary font-bold">AS</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Alice Smith</p>
+<p class="text-xs text-slate-500">Cardiology Consultation</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">10:30 AM</p>
+<span class="text-[10px] px-2 py-0.5 bg-amber-50 text-amber-600 rounded-full font-bold">Pending</span>
+</div>
+</div>
+<div class="flex items-center gap-4 p-4 border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors">
+<div class="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary font-bold">RK</div>
+<div class="flex-1">
+<p class="text-sm font-bold text-slate-900 dark:text-white">Robert King</p>
+<p class="text-xs text-slate-500">Blood Test Results</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-semibold text-slate-900 dark:text-white">11:15 AM</p>
+<span class="text-[10px] px-2 py-0.5 bg-blue-50 text-blue-600 rounded-full font-bold">Confirmed</span>
+</div>
+</div>
+</div>
+<div class="p-4 bg-slate-50 dark:bg-slate-800/50 text-center rounded-b-xl">
+<button class="text-sm font-bold text-primary hover:underline">View All Schedule</button>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="p-6 border-b border-slate-100 dark:border-slate-800">
+<h5 class="font-bold text-slate-900 dark:text-white">Quick Actions</h5>
+</div>
+<div class="p-6 grid grid-cols-2 gap-4">
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:bg-primary/5 transition-all text-center">
+<span class="material-symbols-outlined text-primary text-3xl">person_add</span>
+<span class="text-sm font-semibold">Add Patient</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:bg-primary/5 transition-all text-center">
+<span class="material-symbols-outlined text-primary text-3xl">add_task</span>
+<span class="text-sm font-semibold">New Appointment</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:bg-primary/5 transition-all text-center">
+<span class="material-symbols-outlined text-primary text-3xl">receipt_long</span>
+<span class="text-sm font-semibold">Create Invoice</span>
+</button>
+<button class="flex flex-col items-center gap-3 p-4 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-primary/50 hover:bg-primary/5 transition-all text-center">
+<span class="material-symbols-outlined text-primary text-3xl">lab_profile</span>
+<span class="text-sm font-semibold">Lab Reports</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>
