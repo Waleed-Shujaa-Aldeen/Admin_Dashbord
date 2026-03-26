@@ -4,7 +4,6 @@ export interface Doctor {
   id: string;
   fullName: string;
   specialization: string;
-  email: string;
   phone: string;
   gender: string;
   status: DoctorStatus;
@@ -21,7 +20,6 @@ export interface DoctorPayload {
   user: {
     fullName: string;
     phone: string;
-    email: string;
     password?: string;
     gender: string;
   };

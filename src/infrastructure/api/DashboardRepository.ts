@@ -1,47 +1,45 @@
-import { DashboardMetric } from "@/domain/entities/DashboardMetrics";
+import { DashboardStatsResponse, RevenueTrend } from "@/domain/entities/DashboardMetrics";
+import { apiClient } from "@/infrastructure/api/ApiClient";
 
-export interface DashboardStats {
-  metrics: DashboardMetric[];
-  revenueTrend: {
-    labels: string[]; // e.g., ["May 01", "May 07", "May 14", "May 21", "May 28"]
-    data: number[];   // e.g., [12000, 14500, 13200, 16800, 18450]
-  };
-}
-
+/**
+ * DashboardRepository — Financial dashboard API calls.
+ * Restricted to Admin role on the backend.
+ */
 export const DashboardRepository = {
-  getDashboardStats: async (): Promise<DashboardStats> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        resolve({
-          metrics: [
-            {
-              title: "Today's Appointments",
-              value: "24",
-              trend: "+12%",
-              icon: "event_available",
-              progressPercent: 75
-            },
-            {
-              title: "Occupancy Rate",
-              value: "88%",
-              trend: "+5%",
-              icon: "bed",
-              progressPercent: 88
-            },
-            {
-              title: "Total Revenue",
-              value: "$12,450",
-              trend: "+8.2%",
-              icon: "monetization_on",
-              progressPercent: 66
-            }
-          ],
-          revenueTrend: {
-            labels: ["May 01", "May 07", "May 14", "May 21", "May 28"],
-            data: [11000, 13500, 12200, 14800, 17450]
-          }
-        });
-      }, 400);
-    });
-  }
+
+  // GET /api/dashboard/stats
+  getStats: async (): Promise<DashboardStatsResponse> => {
+    const rawResponse = await apiClient<any>("/dashboard/stats");
+    const raw = rawResponse?.data || rawResponse?.stats || rawResponse || {};
+    
+    console.log("Raw Dashboard Stats:", raw);
+
+    return {
+      revenueThisMonth: raw.revenueThisMonth ?? raw.RevenueThisMonth ?? 0,
+      revenueLastMonth: raw.revenueLastMonth ?? raw.RevenueLastMonth ?? 0,
+      outstandingBalance: raw.outstandingBalance ?? raw.OutstandingBalance ?? 0,
+      totalAppointments: (raw.todayAppointments ?? raw.TodayAppointments ?? 0) + (raw.pendingAppointments ?? raw.PendingAppointments ?? 0) + (raw.confirmedAppointments ?? raw.ConfirmedAppointments ?? 0),
+      totalPatients: raw.totalActivePatients ?? raw.TotalActivePatients ?? raw.totalPatients ?? raw.TotalPatients ?? 0,
+      totalDoctors: raw.totalDoctors ?? raw.TotalDoctors ?? 0,
+    };
+  },
+
+  // GET /api/dashboard/revenue-trend?months={N}
+  getRevenueTrend: async (months: number = 6): Promise<RevenueTrend[]> => {
+    const response = await apiClient<any>(`/dashboard/revenue-trend?months=${months}`);
+
+    let rawList: any[] = [];
+    if (Array.isArray(response)) rawList = response;
+    else if (response?.data && Array.isArray(response.data)) rawList = response.data;
+    else if (response?.items && Array.isArray(response.items)) rawList = response.items;
+
+    return rawList.map((r: any) => ({
+      year: r.year ?? r.Year ?? 0,
+      month: r.month ?? r.Month ?? 0,
+      monthName: r.monthName || r.MonthName || "",
+      totalRevenue: r.totalRevenue ?? r.TotalRevenue ?? 0,
+      appointmentCount: r.appointmentCount ?? r.AppointmentCount ?? 0,
+      newPatientCount: r.newPatientCount ?? r.NewPatientCount ?? 0,
+    }));
+  },
 };

@@ -4,7 +4,6 @@ const initialMockUsers: User[] = [
   {
     id: "U-001",
     name: "System Administrator",
-    email: "admin@med-link.com",
     role: "Admin",
     lastLogin: "2024-05-20T08:30:00Z",
     status: "Active"
@@ -12,7 +11,6 @@ const initialMockUsers: User[] = [
   {
     id: "U-002",
     name: "Clinic Manager",
-    email: "manager@clinic.com",
     role: "Admin",
     agentId: "A-100",
     lastLogin: "2024-05-19T14:15:00Z",
@@ -21,7 +19,6 @@ const initialMockUsers: User[] = [
   {
     id: "U-003",
     name: "IT Support",
-    email: "support@med-link.com",
     role: "Admin",
     lastLogin: "2024-05-10T09:00:00Z",
     status: "Inactive"
@@ -47,7 +44,6 @@ export const UserRepository = {
         const newUser: User = {
           id: `U-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`,
           name: payload.name,
-          email: payload.email,
           role: payload.role,
           agentId: payload.agentId,
           status: payload.status,
@@ -69,7 +65,6 @@ export const UserRepository = {
         mockUsers[index] = { 
           ...mockUsers[index], 
           name: payload.name,
-          email: payload.email,
           role: payload.role,
           agentId: payload.agentId,
           status: payload.status

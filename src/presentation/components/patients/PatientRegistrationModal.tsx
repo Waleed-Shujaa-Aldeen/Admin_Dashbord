@@ -19,7 +19,6 @@ function generateTempPassword(): string {
 type FormState = {
   fullName: string;
   phone: string;
-  email: string;
   gender: number;
   location: string;
   dateOfBirth: string;
@@ -39,7 +38,6 @@ export function PatientRegistrationModal({
   const emptyForm = (): FormState => ({
     fullName: "",
     phone: "",
-    email: "",
     gender: 0,
     location: "",
     dateOfBirth: "",
@@ -58,7 +56,6 @@ export function PatientRegistrationModal({
         setForm({
           fullName: initialData.name || "",
           phone: initialData.phone || "",
-          email: initialData.email || "",
           gender:
             initialData.gender === "Male" ? 0 : initialData.gender === "Female" ? 1 : 2,
           location: initialData.location || "",
@@ -80,7 +77,6 @@ export function PatientRegistrationModal({
   const errors: Partial<Record<keyof FormState, string>> = {};
   if (!form.fullName.trim()) errors.fullName = "Full name is required.";
   if (!/^\d{9}$/.test(form.phone)) errors.phone = "Phone must be exactly 9 digits.";
-  if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errors.email = "Invalid email format.";
   if (!form.location.trim()) errors.location = "Location is required.";
   else if (form.location.length > 50) errors.location = "Location cannot exceed 50 characters.";
   if (form.dateOfBirth && new Date(form.dateOfBirth) >= new Date())
@@ -135,7 +131,6 @@ export function PatientRegistrationModal({
         user: {
           fullName: form.fullName.trim(),
           phone: form.phone.trim(),
-          email: form.email.trim(),
           gender: form.gender,
           // Auto-generate a temp password so the backend gets what it needs
           // The patient can reset it later via the forgot-password flow
@@ -211,22 +206,7 @@ export function PatientRegistrationModal({
                 {errorMsg("fullName")}
               </div>
 
-              {/* Email */}
-              <div>
-                <label className="text-sm font-semibold text-slate-700 dark:text-slate-300 block mb-1.5">
-                  Email Address
-                </label>
-                <input
-                  type="email"
-                  placeholder="e.g. john@example.com"
-                  disabled={isSubmitting}
-                  className={fieldClass("email")}
-                  value={form.email}
-                  onChange={(e) => set("email", e.target.value)}
-                  onBlur={() => blur("email")}
-                />
-                {errorMsg("email")}
-              </div>
+
 
               <div className="grid grid-cols-2 gap-4">
                 {/* Phone */}

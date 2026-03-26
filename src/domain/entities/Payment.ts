@@ -1,21 +1,34 @@
-export type PaymentStatus = "Paid" | "Pending" | "Refunded";
-export type PaymentMethod = "Cash" | "Card" | "Insurance";
+// --- Enums matching the backend Domain layer ---
+
+export type PaymentMethod = "Cash" | "Card" | "BankTransfer" | "Insurance";
+
+export type PaymentStatus = "Pending" | "Completed" | "Failed" | "Cancelled" | "Refunded";
+
+// --- Data Model (maps to backend Payment entity) ---
 
 export interface Payment {
   id: string;
-  patientId: string;
-  patientName: string; // Duplicated here for easier/faster UI rendering on the master list
   amount: number;
-  currency: string;
-  method: PaymentMethod;
+  paymentMethod: PaymentMethod;
   status: PaymentStatus;
-  timestamp: string; // ISO String
+  transactionId?: string;
+  payerId: string;        // Patient ID
+  payerName?: string;     // Hydrated by backend or mapper for UI convenience
+  appointmentId?: string;
+  tenantId: string;
+  createdAt: string;      // ISO Date String
 }
 
-export interface PaymentPayload {
-  patientId: string;
+// --- Request DTOs ---
+
+export interface CreatePaymentDTO {
   amount: number;
-  method: PaymentMethod;
+  paymentMethod: PaymentMethod;
+  payerId: string;
+  appointmentId?: string;
+  transactionId?: string; // Frontend-generated UUID for idempotency
+}
+
+export interface UpdatePaymentStatusDTO {
   status: PaymentStatus;
-  timestamp: string;
 }

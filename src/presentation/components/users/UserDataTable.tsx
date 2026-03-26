@@ -76,7 +76,6 @@ export function UserDataTable({ users, loading, onEdit, onDelete }: UserDataTabl
                       </div>
                       <div>
                         <p className="text-sm font-bold text-slate-900 dark:text-slate-100">{user.name}</p>
-                        <p className="text-xs text-slate-500">{user.email}</p>
                       </div>
                     </div>
                   </td>

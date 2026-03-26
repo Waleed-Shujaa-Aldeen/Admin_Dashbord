@@ -11,12 +11,12 @@ export interface PatientHistoryEvent {
 
 export interface Patient {
   id: string; // e.g., "P-10021"
+  userId?: string; // The backend Identity User GUID needed for Payments FK
   initials: string; // e.g., "JD"
   name: string;
   dob?: string;
   gender?: "Male" | "Female" | "Other";
   phone?: string;
-  email?: string;
   lastVisit: string; // ISO date string or formatted date
   status: PatientStatus;
   balance: number; // e.g., 150.00
@@ -32,7 +32,6 @@ export interface PatientRegistrationPayload {
   user: {
     fullName: string;
     phone: string;
-    email: string;
     password?: string; // Optional for edit
     gender: number; // 0 for Male, 1 for Female, 2 for Other, etc., based on requirements
   };

@@ -21,7 +21,7 @@ export function proxy(request: NextRequest) {
   // --- RBAC Check (for authenticated users) ---
   if (role && role.toLowerCase() === "receptionist") {
     // Block Receptionist from admin-only routes
-    const adminOnlyPaths = ["/users", "/payments"];
+    const adminOnlyPaths = ["/users"];
     const isAdminOnly = adminOnlyPaths.some((p) => pathname.startsWith(p));
 
     if (isAdminOnly) {

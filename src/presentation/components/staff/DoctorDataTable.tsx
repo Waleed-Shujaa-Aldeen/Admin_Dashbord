@@ -3,7 +3,7 @@ import { Doctor, DoctorPayload } from "@/domain/entities/Doctor";
 import { DoctorFormModal } from "./DoctorFormModal";
 import { DeleteConfirmModal } from "./DeleteConfirmModal";
 import { ManageScheduleModal } from "./ManageScheduleModal";
-import { Pencil, Trash2, ShieldCheck, Mail, Phone, Activity, CalendarClock } from "lucide-react";
+import { Pencil, Trash2, ShieldCheck, Phone, Activity, CalendarClock } from "lucide-react";
 
 interface DoctorDataTableProps {
   doctors: Doctor[];
@@ -110,9 +110,6 @@ export function DoctorDataTable({ doctors, loading, onEdit, onDelete }: DoctorDa
                   </td>
                   <td className="px-6 py-4 hidden sm:table-cell">
                     <div className="flex flex-col gap-1.5 text-xs text-slate-600 dark:text-slate-400">
-                      <span className="flex items-center gap-1.5">
-                        <Mail className="size-3.5" /> {doctor.email || <span className="text-slate-400 italic">No email</span>}
-                      </span>
                       <span className="flex items-center gap-1.5">
                         <Phone className="size-3.5" /> {doctor.phone || <span className="text-slate-400 italic">No phone</span>}
                       </span>

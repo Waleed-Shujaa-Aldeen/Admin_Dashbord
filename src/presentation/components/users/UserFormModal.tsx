@@ -13,7 +13,6 @@ export function UserFormModal({ isOpen, onClose, onSubmit, initialData }: UserFo
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<UserPayload>({
     name: "",
-    email: "",
     role: "Admin",
     status: "Active",
     password: ""
@@ -23,7 +22,6 @@ export function UserFormModal({ isOpen, onClose, onSubmit, initialData }: UserFo
     if (initialData && isOpen) {
       setFormData({
         name: initialData.name,
-        email: initialData.email,
         role: initialData.role,
         agentId: initialData.agentId,
         status: initialData.status,
@@ -32,7 +30,6 @@ export function UserFormModal({ isOpen, onClose, onSubmit, initialData }: UserFo
     } else if (isOpen && !initialData) {
       setFormData({
         name: "",
-        email: "",
         role: "Admin",
         status: "Active",
         password: ""
@@ -89,18 +86,7 @@ export function UserFormModal({ isOpen, onClose, onSubmit, initialData }: UserFo
               />
             </div>
             
-            <div className="col-span-2">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 block">Email Address</label>
-              <input 
-                required
-                type="email"
-                value={formData.email}
-                onChange={e => setFormData({...formData, email: e.target.value})}
-                placeholder="Ex. jane@clinic.com"
-                disabled={loading}
-                className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-[#0384c4]/20 focus:border-[#0384c4] px-3 text-sm disabled:opacity-50"
-              />
-            </div>
+
 
             <div>
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 block">System Role</label>

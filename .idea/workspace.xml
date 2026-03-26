@@ -5,12 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a6be22eb-7e29-4a32-bdcb-eee5b9a282a0" name="Changes" comment="admin">
-      <change beforePath="$PROJECT_DIR$/src/application/services/useScheduleProfiles.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/services/useScheduleProfiles.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/domain/entities/Appointment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/Appointment.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/AppointmentRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/AppointmentRepository.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/components/schedule/BookAppointmentModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/schedule/BookAppointmentModal.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/components/schedule/SlotFactoryProgress.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/schedule/SlotFactoryProgress.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/presentation/components/staff/ManageScheduleModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/staff/ManageScheduleModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(dashboard)/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(dashboard)/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/(dashboard)/payments/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/(dashboard)/payments/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/services/useBilling.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/services/useBilling.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/services/useDashboard.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/services/useDashboard.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entities/DashboardMetrics.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/DashboardMetrics.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entities/Doctor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/Doctor.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entities/Patient.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/Patient.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entities/Payment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/Payment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entities/Receptionist.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/Receptionist.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/domain/entities/User.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/domain/entities/User.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/BillingRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/BillingRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/DashboardRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/DashboardRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/DoctorRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/DoctorRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/PatientRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/PatientRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/ReceptionistRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/ReceptionistRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/api/UserRepository.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/api/UserRepository.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/patients/PatientDataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/patients/PatientDataTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/patients/PatientRegistrationModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/patients/PatientRegistrationModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/payments/DeletePaymentDialog.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/payments/DeletePaymentDialog.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/payments/ManualPaymentModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/payments/ManualPaymentModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/payments/PaymentDataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/payments/PaymentDataTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/staff/DoctorDataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/staff/DoctorDataTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/staff/DoctorFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/staff/DoctorFormModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/staff/ReceptionistDataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/staff/ReceptionistDataTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/staff/ReceptionistFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/staff/ReceptionistFormModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/users/UserDataTable.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/users/UserDataTable.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/presentation/components/users/UserFormModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/presentation/components/users/UserFormModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/proxy.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/proxy.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,18 +43,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "Waleed-Shujaa-Aldeen"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Waleed-Shujaa-Aldeen&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Waleed-Shujaa-Aldeen/Admin_Dashbord.git",
-    "accountId": "73d558c8-4714-481d-a56c-b4c858d4aaab"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Waleed-Shujaa-Aldeen/Admin_Dashbord.git&quot;,
+    &quot;accountId&quot;: &quot;73d558c8-4714-481d-a56c-b4c858d4aaab&quot;
   }
-}]]></component>
+}</component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -48,6 +71,7 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "master",
     "javascript.preferred.runtime.type.id": "node",
@@ -60,7 +84,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "npm.Next.js: server-side.executor": "Run",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
+    "settings.editor.selected.configurable": "coverage",
     "ts.external.directory.path": "D:\\Admin Dashbord\\node_modules\\typescript\\lib",
     "vue.rearranger.settings.migration": "true"
   }
@@ -106,7 +130,8 @@
       <workItem from="1774363927232" duration="979000" />
       <workItem from="1774365231913" duration="90000" />
       <workItem from="1774365553446" duration="13479000" />
-      <workItem from="1774447196216" duration="15111000" />
+      <workItem from="1774447196216" duration="15143000" />
+      <workItem from="1774534793205" duration="9326000" />
     </task>
     <task id="LOCAL-00001" summary="s">
       <option name="closed" value="true" />
@@ -124,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774462219214</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="admin">
+      <option name="closed" value="true" />
+      <created>1774464794986</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1774464794986</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

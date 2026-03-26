@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Receptionist, ReceptionistPayload } from "@/domain/entities/Receptionist";
 import { ReceptionistFormModal } from "./ReceptionistFormModal";
 import { DeleteConfirmModal } from "./DeleteConfirmModal";
-import { Pencil, Trash2, Phone, Mail, Clock, UserCheck } from "lucide-react";
+import { Pencil, Trash2, Phone, Clock, UserCheck } from "lucide-react";
 
 interface ReceptionistDataTableProps {
   receptionists: Receptionist[];
@@ -91,9 +91,6 @@ export function ReceptionistDataTable({ receptionists, loading, onEdit, onDelete
                   </td>
                   <td className="px-6 py-4 hidden sm:table-cell">
                     <div className="flex flex-col gap-1.5 text-xs text-slate-600 dark:text-slate-400">
-                      <span className="flex items-center gap-1.5">
-                        <Mail className="size-3.5" /> {receptionist.email || <span className="text-slate-400 italic">No email</span>}
-                      </span>
                       <span className="flex items-center gap-1.5">
                         <Phone className="size-3.5" /> {receptionist.phone || <span className="text-slate-400 italic">No phone</span>}
                       </span>

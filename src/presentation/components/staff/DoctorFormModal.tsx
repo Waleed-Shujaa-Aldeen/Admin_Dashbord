@@ -16,7 +16,6 @@ function generateTempPassword(): string {
 
 interface FormState {
   fullName: string;
-  email: string;
   phone: string;
   gender: string;
   specialization: string;
@@ -36,7 +35,6 @@ export function DoctorFormModal({ isOpen, initialData, onClose, onSubmit }: Doct
   const [formData, setFormData] = useState<FormState>({
     fullName: "",
     specialization: "",
-    email: "",
     phone: "",
     gender: "Male",
     licenseNumber: "",
@@ -55,7 +53,6 @@ export function DoctorFormModal({ isOpen, initialData, onClose, onSubmit }: Doct
       setFormData({
         fullName: initialData.fullName,
         specialization: initialData.specialization,
-        email: initialData.email,
         phone: initialData.phone,
         gender: initialData.gender || "Male",
         licenseNumber: initialData.licenseNumber,
@@ -71,7 +68,6 @@ export function DoctorFormModal({ isOpen, initialData, onClose, onSubmit }: Doct
       setFormData({
         fullName: "",
         specialization: "",
-        email: "",
         phone: "",
         gender: "Male",
         licenseNumber: "",
@@ -103,7 +99,6 @@ export function DoctorFormModal({ isOpen, initialData, onClose, onSubmit }: Doct
       const payload: DoctorPayload = { 
         user: {
           fullName: formData.fullName,
-          email: formData.email,
           phone: formData.phone,
           gender: formData.gender,
           // Auto-generate a temp password for new doctors to satisfy backend requirements
@@ -178,23 +173,12 @@ export function DoctorFormModal({ isOpen, initialData, onClose, onSubmit }: Doct
                     onChange={(e) => handleInputChange('fullName', e.target.value)}
                   />
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Email Address</label>
-                  <input 
-                    required
-                    type="email" 
-                    placeholder="doctor@medlink.com"
-                    className="h-11 px-3 w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6] transition-all"
-                    value={formData.email}
-                    onChange={(e) => handleInputChange('email', e.target.value)}
-                  />
-                </div>
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-1.5 md:col-span-2">
                   <label className="text-sm font-semibold text-slate-700 dark:text-slate-300">Phone Number</label>
                   <input 
                     required
                     type="tel" 
-                    placeholder="+1 (555) 000-0000"
+                    placeholder="7XXXXXXXX"
                     className="h-11 px-3 w-full bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg text-sm focus:ring-2 focus:ring-[#3b82f6]/20 focus:border-[#3b82f6] transition-all"
                     value={formData.phone}
                     onChange={(e) => handleInputChange('phone', e.target.value)}

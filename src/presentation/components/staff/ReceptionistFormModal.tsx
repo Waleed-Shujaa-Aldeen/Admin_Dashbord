@@ -13,7 +13,6 @@ export function ReceptionistFormModal({ isOpen, onClose, onSubmit, initialData }
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState<ReceptionistPayload>({
     name: "",
-    email: "",
     phone: "",
     shift: "Morning",
     status: "Active"
@@ -23,7 +22,6 @@ export function ReceptionistFormModal({ isOpen, onClose, onSubmit, initialData }
     if (initialData && isOpen) {
       setFormData({
         name: initialData.name,
-        email: initialData.email,
         phone: initialData.phone,
         shift: initialData.shift,
         status: initialData.status
@@ -31,7 +29,6 @@ export function ReceptionistFormModal({ isOpen, onClose, onSubmit, initialData }
     } else if (isOpen && !initialData) {
       setFormData({
         name: "",
-        email: "",
         phone: "",
         shift: "Morning",
         status: "Active"
@@ -87,19 +84,7 @@ export function ReceptionistFormModal({ isOpen, onClose, onSubmit, initialData }
               />
             </div>
             
-            <div className="col-span-1">
-              <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 block">Email</label>
-              <input 
-                required
-                type="email"
-                value={formData.email}
-                onChange={e => setFormData({...formData, email: e.target.value})}
-                disabled={loading}
-                className="w-full h-10 rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 px-3 text-sm disabled:opacity-50"
-              />
-            </div>
-
-            <div className="col-span-1">
+            <div className="col-span-2">
               <label className="text-xs font-bold text-slate-700 dark:text-slate-300 uppercase tracking-wider mb-1 block">Phone</label>
               <input 
                 required

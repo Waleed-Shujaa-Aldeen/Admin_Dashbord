@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Patient } from "@/domain/entities/Patient";
-import { Search, Filter, Clock, Pencil, Trash2, Mail, Phone } from "lucide-react";
+import { Search, Filter, Clock, Pencil, Trash2, Phone } from "lucide-react";
 
 interface PatientDataTableProps {
   patients: Patient[];
@@ -74,9 +74,6 @@ export function PatientDataTable({ patients, loading, searchQuery, onSearchChang
                     </td>
                     <td className="px-6 py-4 hidden md:table-cell">
                       <div className="flex flex-col gap-1.5 text-xs text-slate-600 dark:text-slate-400">
-                        <span className="flex items-center gap-1.5">
-                          <Mail className="size-3.5" /> {patient.email || <span className="text-slate-400 italic">No email</span>}
-                        </span>
                         <span className="flex items-center gap-1.5">
                           <Phone className="size-3.5" /> {patient.phone || <span className="text-slate-400 italic">No phone</span>}
                         </span>

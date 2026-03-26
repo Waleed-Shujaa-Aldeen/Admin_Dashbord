@@ -21,7 +21,6 @@ export const DoctorRepository = {
       id: d.id || d.Id || d.userId || d.UserId,
       fullName,
       specialization,
-      email: d.email || d.Email || d.user?.email || d.user?.Email || d.User?.email || d.User?.Email || "",
       phone: d.phone || d.Phone || d.user?.phone || d.user?.Phone || d.User?.phone || d.User?.Phone || "",
       status: d.status || d.Status || "Active",
       licenseNumber: d.licenseNumber || d.LicenseNumber || "",

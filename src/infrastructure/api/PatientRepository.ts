@@ -10,7 +10,6 @@ export const PatientRepository = {
   mapPatient: (p: any): Patient => {
     const name = p.name || p.fullName || p.Name || p.FullName || p.user?.fullName || p.user?.name || "Unknown Patient";
     const phone = p.phone || p.Phone || p.user?.phone || "";
-    const email = p.email || p.Email || p.user?.email || "";
     const gender = p.gender || p.Gender || p.user?.gender || "Male";
     
     const parts = name.trim().split(" ");
@@ -24,9 +23,9 @@ export const PatientRepository = {
     return {
       ...p,
       id: p.id || p.Id || p.patientId || p.PatientId,
+      userId: p.userId || p.UserId || p.user?.id || p.user?.Id || p.applicationUserId || p.ApplicationUserId || "",
       name,
       phone,
-      email,
       gender,
       initials: p.initials || p.Initials || initials,
       dob: p.dob || p.dateOfBirth || p.DateOfBirth || p.Dob || "",
